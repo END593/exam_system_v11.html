@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMS - Designed by Yousef Arab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #c8102e;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        section {
+            padding: 20px;
+            background-color: #2a2a2a;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .option-btn {
+            background-color: #c8102e;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option-btn:hover {
+            background-color: #a60a1e;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #c8102e;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EXAMS - Designed by Yousef Arab</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#register"><i class="fas fa-user-plus"></i> إنشاء حساب</a></li>
+        <li><a href="#login"><i class="fas fa-user"></i> تسجيل دخول</a></li>
+        <li><a href="#add-exam"><i class="fas fa-plus"></i> إضافة امتحان</a></li>
+        <li><a href="#view-exams"><i class="fas fa-list"></i> عرض الامتحانات</a></li>
+        <li><a href="#study-materials"><i class="fas fa-book"></i> مراجعة ومذكرات</a></li>
+    </ul>
+</nav>
+
+<section id="register">
+    <h2>إنشاء حساب</h2>
+    <form id="register-form">
+        <label for="new-username">اسم المستخدم:</label>
+        <input type="text" id="new-username" required>
+        <label for="new-password">كلمة المرور:</label>
+        <input type="password" id="new-password" required>
+        <button type="submit" class="option-btn">إنشاء حساب</button>
+    </form>
+</section>
+
+
+    <h2>تسجيل دخول</h2>
+    <form id="login-form">
+        <label for="username">اسم المستخدم:</label>
+        <input type="text" id="username" required>
+        <label for="password">كلمة المرور:</label>
+        <input type="password" id="password" required>
+        <button type="submit" class="option-btn">تسجيل دخول</button>
+    </form>
+</section>
+
+<section id="add-exam">
+    <h2>إضافة امتحان</h2>
+    <form id="exam-form">
+        <label for="exam-name">اسم الامتحان:</label>
+        <input type="text" id="exam-name" required>
+        <label for="question-count">عدد الأسئلة:</label>
+        <input type="number" id="question-count" required>
+        <button type="button" onclick="startExamCreation()" class="option-btn">ابدأ إضافة الأسئلة</button>
+    </form>
+</section>
+
+<section id="view-exams">
+    <h2>عرض الامتحانات</h2>
+    <ul id="exam-list"></ul>
+</section>
+
+<section id="study-materials">
+    <h2>مراجعة ومذكرات</h2>
+    <input type="file" id="upload-memo" accept=".pdf">
+    <button onclick="uploadMemo()" class="option-btn">رفع مذكرة</button>
+    <h3>المذكرات المرفوعة:</h3>
+    <ul id="memo-list"></ul>
+</section>
+
+
+<section id="contact">
+    <h2>تواصل معنا</h2>
+    <ul>
+        <li><a href="https://wa.me/01201698684" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp (01201698684)</a></li>
+        <li><a href="https://www.tiktok.com/@joo89895" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
+        <li><a href="https://www.facebook.com/share/15vosrHKZ5/?mibextid=qi2Omg" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+        <li><a href="https://www.instagram.com/yousef_arab_88?igsh=cnNhdWlzMWtsMXdj" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+    </ul>
+</section>
+
+<section id="videos">
+    <h2>فيديوهات تعليمية</h2>
+    <input type="text" id="video-url" placeholder="أدخل رابط الفيديو">
+    <button onclick="addVideo()" class="option-btn">إضافة فيديو</button>
+    <ul id="video-list"></ul>
+</section>
+<footer>
+
+    <p>© جميع الحقوق محفوظة 2025 - تصميم يوسف عرب</p>
+</footer>
+
+<script>
+    let exams = JSON.parse(localStorage.getItem("exams")) || [];
+
+    function startExamCreation() {
+        let examName = document.getElementById("exam-name").value;
+        let questionCount = document.getElementById("question-count").value;
+        if (examName && questionCount > 0) {
+            let exam = { name: examName, questions: [] };
+            for (let i = 0; i < questionCount; i++) {
+                let questionText = prompt("أدخل نص السؤال " + (i + 1));
+                let option1 = prompt("الخيار الأول:");
+                let option2 = prompt("الخيار الثاني:");
+                let option3 = prompt("الخيار الثالث:");
+                let option4 = prompt("الخيار الرابع:");
+                let correctOption = prompt("رقم الإجابة الصحيحة (1-4):");
+                exam.questions.push({ questionText, options: [option1, option2, option3, option4], correct: correctOption });
+            }
+            exams.push(exam);
+            localStorage.setItem("exams", JSON.stringify(exams));
+            alert("تم حفظ الامتحان بنجاح!");
+        }
+    }
+
+    function displayExams() {
+        let examList = document.getElementById("exam-list");
+        examList.innerHTML = "";
+        exams.forEach((exam, index) => {
+            let li = document.createElement("li");
+            li.textContent = `${exam.name} - عدد الأسئلة: ${exam.questions.length}`;
+            let btn = document.createElement("button");
+            btn.textContent = "بدء الامتحان";
+            btn.onclick = () => startExam(index);
+            li.appendChild(btn);
+            examList.appendChild(li);
+        });
+    }
+
+    function startExam(index) {
+        let exam = exams[index];
+        let correctAnswers = 0;
+        exam.questions.forEach((q) => {
+            let answer = prompt(q.questionText + "
+1) " + q.options[0] + "
+2) " + q.options[1] + "
+3) " + q.options[2] + "
+4) " + q.options[3]);
+            if (answer == q.correct) correctAnswers++;
+        });
+        let totalQuestions = exam.questions.length;
+        let score = (correctAnswers / totalQuestions) * 100;
+        alert(`تم الانتهاء! نتيجتك: ${score.toFixed(2)}٪ 
+عدد الإجابات الصحيحة: ${correctAnswers}
+عدد الأخطاء: ${totalQuestions - correctAnswers}`);
+    }
+
+    function uploadMemo() {
+        let fileInput = document.getElementById("upload-memo");
+        let file = fileInput.files[0];
+        if (file) {
+            let memoList = document.getElementById("memo-list");
+            let li = document.createElement("li");
+            li.textContent = file.name;
+            memoList.appendChild(li);
+            alert("تم رفع المذكرة!");
+        }
+    }
+
+    displayExams();
+</script>
+
+</body>
+</html>
+
+<script>
+    function registerUser() {
+        let username = document.getElementById("new-username").value;
+        let password = document.getElementById("new-password").value;
+        if (username && password) {
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            if (users.some(user => user.username === username)) {
+                alert("اسم المستخدم مسجل بالفعل!");
+            } else {
+                users.push({ username, password });
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("تم إنشاء الحساب بنجاح!");
+            }
+        } else {
+            alert("يجب ملء جميع الحقول!");
+        }
+    }
+
+    function loginUser() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let validUser = users.find(user => user.username === username && user.password === password);
+        if (validUser) {
+            alert("تم تسجيل الدخول بنجاح!");
+            window.location.href = "#add-exam"; // تحويل المستخدم بعد تسجيل الدخول
+        } else {
+            alert("اسم المستخدم أو كلمة المرور غير صحيحة!");
+        }
+    }
+
+    function addVideo() {
+        let videoUrl = document.getElementById("video-url").value;
+        if (videoUrl) {
+            let videoList = document.getElementById("video-list");
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = videoUrl;
+            a.target = "_blank";
+            a.textContent = videoUrl;
+            li.appendChild(a);
+            videoList.appendChild(li);
+
+            let videos = JSON.parse(localStorage.getItem("videos")) || [];
+            videos.push(videoUrl);
+            localStorage.setItem("videos", JSON.stringify(videos));
+        } else {
+            alert("يرجى إدخال رابط الفيديو!");
+        }
+    }
+
+    function loadVideos() {
+        let videos = JSON.parse(localStorage.getItem("videos")) || [];
+        let videoList = document.getElementById("video-list");
+        videos.forEach(videoUrl => {
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.href = videoUrl;
+            a.target = "_blank";
+            a.textContent = videoUrl;
+            li.appendChild(a);
+            videoList.appendChild(li);
+        });
+    }
+
+    window.onload = loadVideos;
+</script>
